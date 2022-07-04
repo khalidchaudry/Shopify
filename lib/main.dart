@@ -1,7 +1,11 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:shopify/ui/screens/auth/login_screen.dart';
+import 'package:shopify/ui/screens/routes/routes.dart';
 
-void main() {
+main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -11,10 +15,13 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
+      // theme:ThemeData.dark().copyWith(scaffoldBackgroundColor: backgroundColor),
       title: 'Shopify',
-      home: LoginScreen(),
+      initialRoute: '/login',
+      routes: routeName,
+      home: const LoginScreen(),
     );
   }
 }
